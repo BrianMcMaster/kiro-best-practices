@@ -19,7 +19,7 @@ git commit -m "feat: initialize project with Kiro best practices"
 ```bash
 # Add only the .kiro directory to existing project
 cd your-existing-project
-curl -L https://github.com/awsdataarchitect/kiro-best-practices/archive/main.tar.gz | tar -xz --strip-components=2 --overwrite -C .kiro kiro-best-practices-main/.kiro
+mkdir -p .kiro && curl -L https://github.com/awsdataarchitect/kiro-best-practices/archive/main.tar.gz | tar -xz --strip-components=2 -C .kiro kiro-best-practices-main/.kiro
 ```
 
 ### Option 3: Manual Download
@@ -27,7 +27,7 @@ curl -L https://github.com/awsdataarchitect/kiro-best-practices/archive/main.tar
 # Download and extract only .kiro directory
 cd your-project
 mkdir -p .kiro
-curl -L https://github.com/awsdataarchitect/kiro-best-practices/archive/main.tar.gz | tar -xz --strip-components=2 --overwrite -C .kiro kiro-best-practices-main/.kiro
+curl -L https://github.com/awsdataarchitect/kiro-best-practices/archive/main.tar.gz | tar -xz --strip-components=2 -C .kiro kiro-best-practices-main/.kiro
 
 # Or use git sparse-checkout for updates
 git clone --filter=blob:none --sparse https://github.com/awsdataarchitect/kiro-best-practices.git temp-kiro
@@ -36,6 +36,15 @@ git sparse-checkout set .kiro
 cp -r .kiro/* ../.kiro/
 cd .. && rm -rf temp-kiro
 ```
+
+## ⚠️ Important: Activation Requirements
+
+After installation:
+
+- **🎯 Steering Documents**: Automatically refresh and become active immediately - no restart needed
+- **🔄 Hooks**: Require **restarting Kiro** or **reopening the project** to become active
+
+💡 **Tip**: After installation, restart Kiro to ensure all hooks are properly loaded and functional.
 
 ## 📋 What's Included
 
