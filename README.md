@@ -7,7 +7,7 @@ A comprehensive collection of steering documents and agent hooks for Kiro IDE th
 ### Option 1: Clone as Template
 ```bash
 # Clone this repository as a template for your new project
-git clone https://github.com/awsdataarchitect/kiro-best-practices.git your-project-name
+git clone https://github.com/BrianMcMaster/kiro-best-practices.git your-project-name
 cd your-project-name
 rm -rf .git
 git init
@@ -17,23 +17,28 @@ git commit -m "feat: initialize project with Kiro best practices"
 
 ### Option 2: Add to Existing Project (Recommended)
 ```bash
-# Add only the .kiro directory to existing project
+# Add .kiro directory and AGENTS.md to existing project
 cd your-existing-project
-mkdir -p .kiro && curl -L https://github.com/awsdataarchitect/kiro-best-practices/archive/main.tar.gz | tar -xz --strip-components=2 -C .kiro kiro-best-practices-main/.kiro
+mkdir -p .kiro && curl -L https://github.com/BrianMcMaster/kiro-best-practices/archive/main.tar.gz | tar -xz --strip-components=2 -C .kiro kiro-best-practices-main/.kiro
+
+# Add AGENTS.md for agent guidance (recommended)
+curl -L https://raw.githubusercontent.com/BrianMcMaster/kiro-best-practices/main/AGENTS.md -o AGENTS.md
 ```
 
 ### Option 3: Manual Download
 ```bash
-# Download and extract only .kiro directory
+# Download and extract .kiro directory and AGENTS.md
 cd your-project
 mkdir -p .kiro
-curl -L https://github.com/awsdataarchitect/kiro-best-practices/archive/main.tar.gz | tar -xz --strip-components=2 -C .kiro kiro-best-practices-main/.kiro
+curl -L https://github.com/BrianMcMaster/kiro-best-practices/archive/main.tar.gz | tar -xz --strip-components=2 -C .kiro kiro-best-practices-main/.kiro
+curl -L https://raw.githubusercontent.com/BrianMcMaster/kiro-best-practices/main/AGENTS.md -o AGENTS.md
 
 # Or use git sparse-checkout for updates
-git clone --filter=blob:none --sparse https://github.com/awsdataarchitect/kiro-best-practices.git temp-kiro
+git clone --filter=blob:none --sparse https://github.com/BrianMcMaster/kiro-best-practices.git temp-kiro
 cd temp-kiro
-git sparse-checkout set .kiro
+git sparse-checkout set .kiro AGENTS.md
 cp -r .kiro/* ../.kiro/
+cp AGENTS.md ../
 cd .. && rm -rf temp-kiro
 ```
 
@@ -48,18 +53,25 @@ After installation:
 
 ## 📋 What's Included
 
+### 🤖 Agent Guidance
+- **[AGENTS.md](AGENTS.md)** - Comprehensive agent guidance document following [agents.md](https://agents.md) format with architecture overview, operational patterns, MCP integrations, and development standards
+
 ### 🎯 Steering Documents (Always Active)
 Automatically guide all AI interactions with established best practices:
 
 - **[AWS CLI Best Practices](.kiro/steering/aws-cli-best-practices.md)** - `--no-cli-pager` and AWS integration patterns
+- **[Azure CLI Best Practices](.kiro/steering/azure-cli-best-practices.md)** - Output formatting, authentication, and resource management
 - **[CDK Best Practices](.kiro/steering/cdk-best-practices.md)** - Project structure, testing, and deployment patterns
 - **[Development Standards](.kiro/steering/development-standards.md)** - Dependency management, code quality, documentation
 - **[Docker Best Practices](.kiro/steering/docker-best-practices.md)** - Container security and optimization
+- **[GCP CLI Best Practices](.kiro/steering/gcp-cli-best-practices.md)** - gcloud configuration, authentication, and scripting
 - **[Git Best Practices](.kiro/steering/git-best-practices.md)** - Conventional commits, branching, and security
+- **[Go Best Practices](.kiro/steering/go-best-practices.md)** - Code style, error handling, concurrency, and testing
 - **[MCP Best Practices](.kiro/steering/mcp-best-practices.md)** - Model Context Protocol server configuration and usage
 - **[Python Best Practices](.kiro/steering/python-best-practices.md)** - Code style, virtual environments, and testing
 - **[React Best Practices](.kiro/steering/react-best-practices.md)** - Component patterns, hooks, and accessibility
 - **[Security Best Practices](.kiro/steering/security-best-practices.md)** - Code security, dependency management, data protection
+- **[Terraform Best Practices](.kiro/steering/terraform-best-practices.md)** - Infrastructure as code, state management, and modules
 - **[Testing Best Practices](.kiro/steering/testing-best-practices.md)** - Minimal verbosity, output management, performance
 - **[TypeScript Best Practices](.kiro/steering/typescript-best-practices.md)** - Code style, type safety, and testing guidelines
 
@@ -137,12 +149,13 @@ inclusion: always
 
 This boilerplate includes best practices for:
 
-- **Languages**: TypeScript, JavaScript, Python
+- **Languages**: TypeScript, JavaScript, Python, Go
 - **Frameworks**: React, CDK, Docker
 - **Tools**: Git, npm/yarn, pytest, ESLint, Prettier
-- **Cloud**: AWS (CLI, CDK, services)
+- **Cloud**: AWS (CLI, CDK, services), Azure (CLI, services), GCP (gcloud, services)
+- **Infrastructure**: Terraform, CDK
 - **APIs**: OpenAPI/Swagger, GraphQL
-- **Testing**: Jest, pytest, coverage analysis
+- **Testing**: Jest, pytest, Go testing, coverage analysis
 - **Documentation**: Markdown, JSDoc, docstrings
 
 ## 📚 MCP Integration
